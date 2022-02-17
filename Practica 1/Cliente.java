@@ -55,8 +55,8 @@ public class Cliente{
             String ruta = file.getSelectedFile().getAbsolutePath();
             
             File archivo = new File(ruta);
-            BufferedInputStream bis = new BufferedInputStream(new FileInputStream(archivo));
-            BufferedOutputStream bos = new BufferedOutputStream(cl1.getOutputStream());
+            BufferedInputStream bis = new BufferedInputStream(cl1.getInputStream());
+            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(archivo));
             cl1.setSoTimeout(3000);
             byte[] buf = new byte[1024];
             int leidos;
