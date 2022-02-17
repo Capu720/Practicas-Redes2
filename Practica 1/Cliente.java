@@ -53,10 +53,14 @@ public class Cliente{
             JFileChooser file = new JFileChooser();
             file.showOpenDialog(file);
             String ruta = file.getSelectedFile().getAbsolutePath();
-            
+            System.out.println("Subiendo archivo...");
             File archivo = new File(ruta);
-            BufferedInputStream bis = new BufferedInputStream(cl1.getInputStream());
-            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(archivo));
+            BufferedInputStream bis = new BufferedInputStream(new FileInputStream(archivo));
+            BufferedOutputStream bos = new BufferedOutputStream(cl1.getOutputStream());
+            
+            DataOutputStream dos = new DataOutputStream(cl1.getOutputStream());
+            dos.writeUTF(archivo.getName());
+            
             cl1.setSoTimeout(3000);
             byte[] buf = new byte[1024];
             int leidos;
@@ -93,7 +97,7 @@ public class Cliente{
     public void Conectar(){
         try
         {
-            cl1 = new Socket("localhost", 3000);
+            cl1 = new Socket(InetAddress.getByName("127.0.0.1"), 4000);
             System.out.println("Conexion con el servidor");
             Menu();
         }

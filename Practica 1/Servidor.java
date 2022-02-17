@@ -6,7 +6,7 @@ public class Servidor {
     public static void main(String[] args) {
         try
         {
-            ServerSocket ss = new ServerSocket(3000);
+            ServerSocket ss = new ServerSocket(4000);
 	        System.out.println("Servidor iniciado. Esperando cliente");
             for(;;)
             {
@@ -14,13 +14,14 @@ public class Servidor {
                 int leidos = 0;
                 int completados = 0;
 
+                BufferedInputStream bis = new BufferedInputStream(cl.getInputStream());
+
                 //Recibimos la ruta del archivo
                 DataInputStream dis = new DataInputStream(cl.getInputStream());
                 String file = dis.readUTF();
                 file = file.substring(file.indexOf('/')+1,file.length());
 
-                BufferedOutputStream bos = new BufferedOutputStream(cl.getOutputStream());
-                BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
+                BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
                 
                 byte[] buf = new byte[1024];
                 int tam_bloque = (bis.available() >= 1024)? 1024 :bis.available();
