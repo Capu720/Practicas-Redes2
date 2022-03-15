@@ -1,0 +1,21 @@
+Sopa de letras Cliente-servidor modo concepto
+
+Un solo jugador
+Sockets datagrama
+
+1. App permite elegir dirección IP Y No. puerto
+2. Modo consola
+3. Se carga la lista de palabras desde un archivo
+4. Distribucion aleatoria
+5. Marca de tiempo al inicio y al final
+6. Estadisticas para records de juego (maybe juego por archivo)
+7. Guardar estadisticas de juegos previos - desplegar lista de record al final de cada juego
+8. En caso de volver a jugar deberá utilizar otras palabras y colocarlas en posiciones distintas
+
+
+
+El programa puede aleatoriamente ofrecer tres niveles de dificultad: 
+	- en el más difícil solo se muestra lalongitud de las palabras por encontrar
+	- en el más fácil se muestran todas las palabras; 
+	- y en el nivel intermedio, las letras se van descubriendo a medida que los 
+		jugadores cometen fallos o no logran encontrar las palabras escondidas.
