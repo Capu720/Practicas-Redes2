@@ -55,6 +55,17 @@ class SopaDeLetras {
         for(String concepto : this.conceptos){
             this.colocarPalabra(concepto);
         }
+
+        // Se termina de rellenar la tabla
+        for(int i = 0; i < this.LONGITUD; i++){
+            for(int j = 0; j < this.LONGITUD; j++){
+                if(!ocupacion[i][j]){
+                    int assci = randomInt(97, 122);
+                    char relleno = (char) assci;
+                    tablero[i][j] = Character.toString(relleno);
+                }
+            }
+        }
     }
 
     private void colocarPalabra(String concepto){
@@ -125,17 +136,6 @@ class SopaDeLetras {
         int coordY = movY;
         Coordenadas coordsFinal = new Coordenadas(coordX, coordY);
         palabras.put(concepto, new Palabra(concepto, direccion, inicio, coordsFinal));
-
-        // Se termina de rellenar la tabla
-        for(int i = 0; i < this.LONGITUD; i++){
-            for(int j = 0; j < this.LONGITUD; j++){
-                if(!ocupacion[i][j]){
-                    int assci = randomInt(97, 122);
-                    char relleno = (char) assci;
-                    tablero[i][j] = Character.toString(relleno);
-                }
-            }
-        }
     }
 
     private void imprimirTablero(){
