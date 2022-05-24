@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;" />
+        <link rel=shortcut icon href=archivos/favicon.ico type=image/x-icon/>
+        <title>Formulario de registro</title>
+    </head>
+    <body bgcolor="#e0e000">
+        <center>
+            <h3>Ejemplo sencillo de un formulario</h3>
+            <h4>Formulario de Registro</h4>
+            <img src="archivos/shaq.jpg" />
+        </center>
+        <hr>
+        Sea tan amable de rellenar el siguiente formulario.
+        <br> 
+        <hr>
+        <center><h3>Metodo GET</h3></center>
+        <form id="formGet" action="http://127.0.0.1:8000" enctype="text/plain" method="GET">
+            Nombre: <BR>
+            <INPUT TYPE="text" NAME="Apellido" id="ape">
+            <br>
+            Direccion: <BR>
+            <INPUT TYPE="text" NAME="Direccion" id="dir">
+            <br>
+            Telefono: <BR>
+            <INPUT TYPE="text" NAME="Telefono" id="tel">
+            <br>
+            Comentarios:<br>
+            <TEXTAREA NAME="comentario" ROWS="7" COLS="40" id="com"></TEXTAREA>
+            <INPUT TYPE="submit" VALUE="Enviar datos">
+            <INPUT TYPE="reset" VALUE="Limpiar">
+        </form>
+        <hr>    
+        <center><h3>Metodo POST</h3></center>
+        <form id="formPut" action="http://127.0.0.1:8000" method="POST">
+            Nombre: <BR>
+            <INPUT TYPE="text" NAME="Apellido" id="ape">
+            <br>
+            Direccion: <BR>
+            <INPUT TYPE="text" NAME="Direccion" id="dir">
+            <br>
+            Telefono: <BR>
+            <INPUT TYPE="text" NAME="Telefono" id="tel">
+            <br>
+            Comentarios:<br>
+            <TEXTAREA NAME="comentario" ROWS="7" COLS="40" id="com"></TEXTAREA>
+            <INPUT TYPE="submit" VALUE="Enviar datos">
+            <INPUT TYPE="reset" VALUE="Limpiar">
+        </form>
+        <hr>
+        <center>
+            <h3>Metodo PUT</h3>
+        </center>
+        <div>
+            Ingrese el nombre del archivo: <input type="text" id = "fileNamePut" name = "fileNamePut">
+            <button id="putBtn">Crear</button>
+        </div>
+        <hr>
+        <center>
+            <h3>Metodo DELETE</h3>
+        </center>
+        <div>
+            Ingrese el nombre del archivo: <input type="text" id = "fileNameDelete">
+            <button id="delBtn">Eliminar</button>
+        </div>
+        <hr>
+        <center>
+            <h3>Tipos de MIMES</h3>
+        </center>
+        <h5>Archivos</h5>
+        <ul>
+            <li> <a href="/archivos/curso.pdf">curso.pdf</a>
+            <li> <a href="/archivos/toreto.jpg">toreto.jpg</a>
+            <li> <a href="/archivos/pinguino.png">pinguino.png</a>
+            <li> <a href="/archivos/noexiste.pdf">noexiste.pdf</a>
+        </ul>
+        <hr>
+        <center>
+            <h3>Metodo HEAD</h3>
+        </center>
+        <div>
+            Ingrese el nombre del archivo: <input type="text" id = "txtHead">
+            <button id="headBtn">Metodo HEAD</button>
+        </div>
+    </body>
+    <script>
+        const deltBtn = document.getElementById("delBtn");
+        const putBtn = document.getElementById("putBtn");
+        const fileNamePut = document.getElementById('fileNamePut');
+        const fileNameDelete = document.getElementById('fileNameDelete');
+        const headBtn = document.getElementById('headBtn');
+        const head = document.getElementById('txtHead');
+
+        putBtn.addEventListener('click', () => {
+            fetch ('http://127.0.0.1:8000/', {
+                method: 'PUT',
+                redirect: 'follow',
+                headers: {
+                    'Content-Type': 'text/plain'
+                },
+                body: fileNamePut.value
+            })
+            .then(alert("Se creo un archivo"))
+            .catch(err => console.error(err))
+        });
+
+        delBtn.addEventListener('click', () => {
+            fetch('http://127.0.0.1:8000/', {
+                method: 'DELETE',
+                redirect: 'follow',
+                headers: {
+                    'Content-Type': 'text/plain'
+                },
+                body: fileNameDelete.value
+            })
+            .then(alert("Se eliminio un archivo"))
+            .catch(err => console.error(err))
+        });
+
+        headBtn.addEventListener('click', () => {
+            fetch('http://127.0.0.1:8000/archivos/' + head.value, {
+                method: 'HEAD',
+                body: null
+            })
+            .then()
+            .catch(err => console.error(err))
+        });
+
+    </script>
+</html>
+
