@@ -24,6 +24,7 @@ public class Interfaz extends javax.swing.JFrame {
     /**
      * Creates new form Interfaz
      */
+    //Para que jale necesitas cambiarle estas rutas y poner las rutas que quieras que tenga el servidor
     ArrayList <Datos> nodos = new ArrayList();
     ArrayList <Archivo> archivos = new ArrayList();
     ArrayList <Archivo> respuesta = new ArrayList();
@@ -261,6 +262,7 @@ public class Interfaz extends javax.swing.JFrame {
     
     public void crearServers() throws IOException, InterruptedException
     {
+        //Para que jale necesitas cambiarle estas rutas y poner las rutas que quieras que tenga el servidor
         String[] direcciones = new String[2];
         direcciones[0] = "G:\\Otros\\Practica7\\Server2\\";
         direcciones[1] = "G:\\Otros\\Practica7\\Server3\\";
@@ -280,7 +282,7 @@ public class Interfaz extends javax.swing.JFrame {
             new ServidorMulticast(ms,puertoRMI,puertoEnvio, ID, direcciones[i]).start();
             new ClienteMulticast(ms, puertoRMI, puertoEnvio, ID, nodos,direcciones[i]).start();
             
-            modelSer.addRow(new Object[]{ID, puertoRMI, puertoEnvio, "5" });
+            modelSer.addRow(new Object[]{ID, puertoRMI, puertoEnvio, "6" });
             new ServicioRMI(puertoRMI).start();
             Thread.sleep(1000);
             
@@ -288,9 +290,8 @@ public class Interfaz extends javax.swing.JFrame {
         }
         jTablaServidores.setModel(modelSer);
         
-    
     }
-    
+       
     //Boton Inicio
     
     private void jBtnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnInicioActionPerformed
@@ -304,7 +305,8 @@ public class Interfaz extends javax.swing.JFrame {
             MulticastSocket ms = new MulticastSocket(7777);
             ms.setReuseAddress(true);
             ms.setTimeToLive(225);
-              
+            
+            //Para que jale necesitas cambiarle estas rutas y poner las rutas que quieras que tenga el servidor
             String ruta = "G:\\Otros\\Practica7\\Server1\\";
             
             System.out.println("Ruta de la carpeta: "+ ruta);

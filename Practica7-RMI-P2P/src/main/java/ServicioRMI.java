@@ -106,7 +106,7 @@ public class ServicioRMI extends Thread implements ListaArchivos{
    
         try
         {
-        
+            //Para que jale necesitas cambiarle estas rutas y poner las rutas que quieras que tenga el servidor y encontrar ese archivo
             System.setProperty("java.rmi.server.codebase","file:G:\\permisos.policy");
 	    ServicioRMI obj = new ServicioRMI();       
 	    ListaArchivos stub = (ListaArchivos) UnicastRemoteObject.exportObject((Remote) this, 0);
